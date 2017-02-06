@@ -1,0 +1,12 @@
+# skills section data
+- name: Python
+  percentage: 100
+
+- name: HTML/CSS
+  percentage: 95
+
+- name: jQuery
+  percentage: 90
+
+- name: Vuejs
+  percentage: 20

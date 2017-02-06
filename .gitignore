@@ -1,2 +1,7 @@
-# .ds_store
+_site
+.sass-cache
+.jekyll-metadata
+.idea
 .DS_Store
+node_modules
+npm-debug.log
