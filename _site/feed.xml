@@ -3,10 +3,10 @@
   <channel>
     <title>Mancoxu</title>
     <description>Manco's blog,use Jekyll and github pages.</description>
-    <link>http://localhost:4000/my-site/</link>
-    <atom:link href="http://localhost:4000/my-site/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Feb 2017 19:10:00 +0800</pubDate>
-    <lastBuildDate>Tue, 07 Feb 2017 19:10:00 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 07 Feb 2017 19:25:35 +0800</pubDate>
+    <lastBuildDate>Tue, 07 Feb 2017 19:25:35 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -53,8 +53,8 @@
 &lt;p&gt;If you like this repository, I appreciate you star this repository. Please don’t hesitate to mail me or post issues on GitHub if you have any questions. Hope you have a happy blog time!😊&lt;/p&gt;
 </description>
         <pubDate>Tue, 31 Jan 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/my-site/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</link>
-        <guid isPermaLink="true">http://localhost:4000/my-site/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</guid>
+        <link>http://localhost:4000/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</link>
+        <guid isPermaLink="true">http://localhost:4000/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</guid>
         
         <category>Jalpc</category>
         
