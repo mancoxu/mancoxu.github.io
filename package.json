@@ -4,6 +4,7 @@
   "description": "npm config file for jalpc",
   "main": "index.js",
   "scripts": {
+    "start": "jekyll serve",
     "compress": "node build.js"
   },
   "repository": {
