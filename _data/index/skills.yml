@@ -1,12 +1,28 @@
 # skills section data
-- name: Python
-  percentage: 100
 
-- name: HTML/CSS
-  percentage: 95
-
-- name: jQuery
+- name: React/Redux
   percentage: 90
 
-- name: Vuejs
-  percentage: 20
+- name: ReactRouter
+  percentage: 90
+
+- name: AntDesign
+  percentage: 90
+
+- name: Bootstrap
+  percentage: 90
+
+- name: ES6
+  percentage: 85
+
+- name: Angular
+  percentage: 80
+
+- name: HTML/SCSS
+  percentage: 95
+
+- name: JQuery
+  percentage: 90
+
+- name: Git
+  percentage: 80

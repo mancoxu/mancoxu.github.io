@@ -1,29 +1,59 @@
 # careers section data
 # if you don't have language feature(language.yml is empty), ignore "i18n" items
+
+
 - name:
-    detail: Company A
+    detail: 北京云予科技技术有限公司
     i18n: company_a
   desc:
-    detail: I worked at Company A ...
+    detail: 负责公司内部清结算系统、官网、红包C端、B端功能开发
     i18n: company_a_desc
   date:
-    detail: Apr. 2016
+    detail: 2015 - 11
     i18n: company_a_date
   job:
-    detail: CTO
+    detail: 高级web前端开发工程师
     i18n: company_a_job
   icon: fa-plus-square
 
 - name:
-    detail: Company B
+    detail: 北京凯铭风尚网络技术有限公司（YOKA）
+    i18n: company_a
+  desc:
+    detail: 负责公司前端的开发，H5、移动端相关、公司专题模板研发、内部管理系统开发
+    i18n: company_a_desc
+  date:
+    detail: 2014 - 6
+    i18n: company_a_date
+  job:
+    detail: web前端开发工程师
+    i18n: company_a_job
+  icon: fa-plus-square
+
+- name:
+    detail: 北京华路时代信息技术有限公司
+    i18n: company_a
+  desc:
+    detail: 负责公司前端的开发与维护工作，主要进行网站管理系统管理项目开发
+    i18n: company_a_desc
+  date:
+    detail: 2013 - 6
+    i18n: company_a_date
+  job:
+    detail: js开发工程师
+    i18n: company_a_job
+  icon: fa-plus-square
+
+- name:
+    detail: 北京金源怡城科技有限责任公司
     i18n: company_b
   desc:
-    detail: I worked at Company B ...
+    detail: 主要功能内容是网站切图制作，CSS3效果交互、主要语言JQuery
     i18n: company_b_desc
   date:
-    detail: Jun. 2015
+    detail: 2011 - 3
     i18n: company_b_date
   job:
-    detail: 前端开发工程师
+    detail: 网站制作
     i18n: company_b_job
   icon: fa-plus-square
