@@ -38,7 +38,7 @@ function compressjs(filename, filelist){
 	});
 
 	fs.writeFileSync('static/assets/' + filename, result.code);
-	console.log("Index page js files compress succeed. You can find it at \"static/assets\".\n".green);
+	console.log("Index page js files compress succeed. You can find it at \"static/assets\".\n");
 }
 
 // compress css files function
@@ -70,7 +70,7 @@ function compresscss(filename, filelist) {
 	}).minify(result.styles);
 
 	fs.writeFileSync('static/assets/' + filename, output.styles);
-	console.log("Blog page css files compress succeed. You can find it at \"static/assets\".\n".green);
+	console.log("Blog page css files compress succeed. You can find it at \"static/assets\".\n");
 }
 
 // compress js files of 404 page

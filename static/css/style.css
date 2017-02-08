@@ -7486,7 +7486,13 @@ body.landing-page {
     width: 100%
 }
 .landing-page .index-header.index{
-    background: url(../img/landing/header-one.jpg) 0 0 fixed no-repeat;
+    background: url(../img/landing/header-one.jpg) 0 -140px fixed no-repeat;
+    background-size: 100%;
+}
+
+.landing-page .index-header.blog{
+    height: 400px;
+    background: url(../img/landing/header-blog.jpg) 0 -180px fixed no-repeat;
     background-size: 100%;
 }
 
@@ -7626,7 +7632,8 @@ body.landing-page {
     padding-top: 80px;
     padding-bottom: 90px;
     background-color: #3385FF;
-    background-image: url(../img/landing/avatar_all.png)
+    background: url(../img/landing/avatar_all.jpg) 0 0 fixed;
+    background-size: 100%;
 }
 
 .landing-page .big-icon {
