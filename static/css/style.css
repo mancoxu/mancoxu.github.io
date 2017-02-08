@@ -3699,7 +3699,9 @@ body.tour-open .animated {
     padding: 15px 20px;
     border-bottom: 1px solid #e7eaec
 }
-
+html,body{
+    overflow: hidden;
+}
 body {
     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #2f4050;
