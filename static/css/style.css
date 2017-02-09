@@ -6131,7 +6131,7 @@ table.shoping-cart-table tr td:last-child {
 .social-comment .social-comment,
 .vote-info,
 .vote-title {
-    margin-left: 45px
+    margin-left: 0;
 }
 
 .social-avatar {
@@ -6179,7 +6179,7 @@ table.shoping-cart-table tr td:last-child {
 }
 
 .vote-item {
-    padding: 20px 25px;
+    padding: 20px 5px;
     background: #fff
 }
 
