@@ -1,22 +1,22 @@
 # blog page sections
 - name: Blog
-  href: /blog/
+  href: /
 
 # edit following lines to custom your blog page, make sure name is the same as href but capitalized first letter(except HTML)
-- name: Python
-  href: /python/
+- name: JavaScript
+  href: /javascript/
 
-- name: Linux
-  href: /linux/
+- name: HTML+CSS
+  href: /html+css/
 
-- name: HTML
-  href: /html/
-
-- name: Database
-  href: /database/
+- name: GIT
+  href: /git/
 
 - name: Mac
   href: /mac/
+
+- name: Other
+  href: /other/
 
 - name: Life
   href: /life/

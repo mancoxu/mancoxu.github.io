@@ -2,24 +2,91 @@
 <html>
 
 	
-		<head>
+	    <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta content="Jack's blog,use Jekyll and github pages." name="description">
-  <meta name="keywords" content="Jack,Jalpc,blog,Jekyll,github,gh-pages">
+  
+  
   <meta name="author" content="GitHub">
-  <title>Mancoxu</title>
+
+  <title>
+    
+        Mancoxu|Blog
+    
+  </title>
   <!-- favicon -->
-  <link rel="shortcut icon" href="/homepage/static/assets/img/favicon.ico">
+  <link rel="shortcut icon" href="/static/assets/img/favicon.ico">
 
   <!-- Main CSS -->
-  <link href="/homepage/static/assets/app-index-20170125.min.css" rel="stylesheet">
+  <link href="/static/assets/app-20170209.min.css" rel="stylesheet">
 
-  <!-- Main scripts -->
-  <script src="/homepage/static/assets/app-index-20170125.min.js"></script>
+  <!-- Main Scripts -->
+  <script src="/static/assets/app-20170209.min.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var initial = 0;
+      var show = true;
+
+      var toggleSearch = function (visible) {
+        initial = 0;
+        show = !visible;
+        var visibility = visible ? 'block' : 'none';
+
+        $("#search-content").val("");
+        $(".search-tool").css("display", visibility);
+      };
+
+      var shouldToggle = function (time) {
+        var gap = time - initial;
+        initial = time;
+        return gap < 500;
+      };
+
+      $(document).keyup(function (e) {
+        var now = new Date().getTime();
+        if (e.keyCode == 17 && shouldToggle(now)) {
+          toggleSearch(show);
+        } else if (e.keyCode == 27) {
+          toggleSearch(false);
+        }
+      });
+
+      $("#search-content").keyup(function (e) {
+        var now = new Date().getTime();
+        if (e.keyCode == 17 && shouldToggle(now)) {
+          toggleSearch(show);
+        }
+      });
+
+      $("#close-btn").click(function () {
+        toggleSearch(false);
+      });
+
+      $("#search-btn").click(function() {
+        toggleSearch(true);
+      });
+
+      $.getJSON("/search/cb-search.json")
+        .done(function (data) {
+          if (data.code == 0) {
+            $("#search-content").typeahead({
+              source: data.data,
+              displayText: function (item) {
+                return item.title;
+              },
+              afterSelect: function (item) {
+                window.location.href = item.url;
+              }
+            });
+          }
+        });
+    });
+    $(function(){
+        $("pre").css('display','block');
+    });
+  </script>
 </head>
 
 	
@@ -27,9 +94,21 @@
 <body id="page-top" class="landing-page">
 
 	
+	    <div class="search-tool"
+      style="width:100%;position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px; opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px" placeholder="Search Blog">
 
-        <div class="navbar-wrapper">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+        <img src="/search/img/cb-close.png" id="close-btn"/>
+    </div>
+</div>
+
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9998;">
+    <img src="/search/img/cb-search.png"  id="search-btn"  title="Double click Ctrl"/>
+</div>
+
+<div class="navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top  animated fadeInDownBig" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -38,486 +117,157 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top" id="i18_title"><span data-i18n="website.title">Mancoxu</span></a>
+                <a class="navbar-brand" href="/me">Mancoxu</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right" id="i18_navbar">
-                
-                    <li>
-                      <a class="page-scroll" href="#about-me">
-                        <span data-i18n="nav.about_me">About</span>
-                      </a>
-                    </li>
-                
-                    <li>
-                      <a class="page-scroll" href="#career">
-                        <span data-i18n="nav.career">Career</span>
-                      </a>
-                    </li>
-                
-                    <li>
-                      <a class="page-scroll" href="#skills">
-                        <span data-i18n="nav.skills">Skills</span>
-                      </a>
-                    </li>
-                
-                    <li>
-                      <a class="page-scroll" href="#projects">
-                        <span data-i18n="nav.projects">Projects</span>
-                      </a>
-                    </li>
-                
-                    <li>
-                      <a class="page-scroll" href="#blog">
-                        <span data-i18n="nav.blog">Blog</span>
-                      </a>
-                    </li>
-                
-                    <li>
-                      <a class="page-scroll" href="#links">
-                        <span data-i18n="nav.link">Links</span>
-                      </a>
-                    </li>
-                
-
-                
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="/"></a></li>
+                    
+                        
+                        
+                        <li class="active">
+                        
+                        <a class="page-scroll" href="/">Blog</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/javascript/">JavaScript</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/html+css/">HTML+CSS</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/git/">GIT</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/mac/">Mac</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/other/">Other</a></li>
+                        
+                    
+                        
+                        
+                        <li>
+                        
+                        <a class="page-scroll" href="/life/">Life</a></li>
+                        
+                    
+                        
+                    
                 </ul>
             </div>
         </div>
     </nav>
 </div>
-<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-        <li data-target="#inSlider" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="container">
-                <div class="carousel-caption">
-                </div>
-                <div class="carousel-image wow zoomIn">
-                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-            <div class="header-back one"></div>
-        </div>
-        <div class="item">
-            <div class="container">
-                <div class="carousel-caption blank">
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-            <div class="header-back two"></div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-
-  
-  <section id="about-me" class="features  " style="margin-top: 0;">
-    <div class="container" id="i18_about_me">
-    <div class="row m-b-lg">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="about_me.about_me">About Me</span></h1>
-            <!-- <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p> -->
-        </div>
-    </div>
-    <div class="row">
-        <!-- first two icons -->
-        
-        <div class="col-xs-2 wow fadeInLeft">
-            <div class="team-member">
-                <div class="vote-icon">
-                    <i class="fa icon-apache"></i>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xs-2 wow fadeInLeft">
-            <div class="team-member">
-                <div class="vote-icon">
-                    <i class="fa fa-linux"></i>
-                </div>
-            </div>
-        </div>
-        
-        <!-- avatar -->
-        <div class="col-xs-4">
-            <div class="team-member wow zoomIn">
-                <img src="/homepage/static/assets/img/landing/avatar.jpg" height="110" width="110" class="img-responsive img-circle" alt="">
-                <h4><span class="navy">Hub</span> Git</h4>
-                <ul class="list-inline social-icon">
-                    <li>
-                        <a href="https://github.com/jarrekk" target="blank"><i class="fa fa-github"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/jiakunnj" target="blank"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="mailto:me@jack003.com"><i class="fa fa-envelope-o"></i></a>
-                    </li>
-                    <li>
-                        <a href="/homepage/feed.xml" target="blank"><i class="fa fa-rss"></i></a>
-                    </li>
-                    
-                    <li>
-                        <a href="http://cv.jack003.com" target="blank"><i class="fa fa-file-pdf-o"></i></a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-        <!-- second two icons -->
-        
-        <div class="col-xs-2 wow fadeInRight">
-            <div class="team-member">
-                <div class="vote-icon">
-                    <i class="fa fa-linux"></i>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xs-2 wow fadeInRight">
-            <div class="team-member">
-                <div class="vote-icon">
-                    <i class="fa icon-apache"></i>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg wow zoomIn">
-            <p><span data-i18n="about_me.des">Introduce myself will be here.</span></p>
-        </div>
-    </div>
-</div>
-
-  </section>
-
-  
-  <section id="career" class="features  gray-section  timeline" style="margin-top: 0;">
-    <div class="container" id="i18_career">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="career.my_career">My Career</span></h1>
-        </div>
-    </div>
-    <div class="row features-block">
-        <div class="col-lg-12">
-            <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn">
-                        <i class="fa fa-plus-square"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpRight ">
-                        <h2><span data-i18n="career.company_a">Company A</span></h2>
-                        <p><span data-i18n="career.company_a_desc">I worked at Company A ... </span></p>
-                        <span class="vertical-date"><span data-i18n="career.company_a_date"> Apr. 2016 </span>
-                        <br/> <small><span data-i18n="career.company_a_job">CTO</span></small> </span>
-                    </div>
-                </div>
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn">
-                        <i class="fa fa-plus-square"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpLeft ">
-                        <h2><span data-i18n="career.company_b">Company B</span></h2>
-                        <p><span data-i18n="career.company_b_desc">I worked at Company B ... </span></p>
-                        <span class="vertical-date"><span data-i18n="career.company_b_date"> Jun. 2015 </span>
-                        <br/> <small><span data-i18n="career.company_b_job">Full Stack Developer</span></small> </span>
-                    </div>
-                </div>
-            
-            </div>
-        </div>
-    </div>
-</div>
-
-  </section>
-
-  
-  <section id="skills" class="features  team" style="margin-top: 0;">
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center" id="i18_skills">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="skills.my_skills">My Skills</span></h1>
-        </div>
-    </div>
-    <div class="row features-block">
-        
-            
-        <div class="row">
-            <div class="col-lg-1 col-lg-offset-2 wow  fadeInLeft ">
-                <p>Python</p>
-            </div>
-            <div class="col-lg-7 wow   fadeInRight ">
-                <div class="progress progress-bar-default">
-                    <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        
-            
-        <div class="row">
-            <div class="col-lg-1 col-lg-offset-2 wow  fadeInRight ">
-                <p>HTML/CSS</p>
-            </div>
-            <div class="col-lg-7 wow   fadeInLeft ">
-                <div class="progress progress-bar-default">
-                    <div style="width: 95%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="95" role="progressbar" class="progress-bar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        
-            
-        <div class="row">
-            <div class="col-lg-1 col-lg-offset-2 wow  fadeInLeft ">
-                <p>jQuery</p>
-            </div>
-            <div class="col-lg-7 wow   fadeInRight ">
-                <div class="progress progress-bar-default">
-                    <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" class="progress-bar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        
-            
-        <div class="row">
-            <div class="col-lg-1 col-lg-offset-2 wow  fadeInRight ">
-                <p>Vuejs</p>
-            </div>
-            <div class="col-lg-7 wow   fadeInLeft ">
-                <div class="progress progress-bar-default">
-                    <div style="width: 20%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        
-    </div>
-</div>
-
-  </section>
-
-  
-  <section id="projects" class="features  gray-section  project" style="margin-top: 0;">
-    <div class="container" id="i18_projects">
-    <div class="row m-b-lg">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="projects.my_projects">My Projects</span></h1>
-        </div>
-    </div>
-    <div class="row">
-        
-            
-            
-            <div class="col-sm-6 wow  fadeInLeft ">
-            
-              <div class="team-member">
-                  <img src="/homepage/static/assets/img/landing/jekyll.png" class="img-responsive img-circle img-small" alt="">
-                  <h4>
-                  
-                  <a href="https://github.com/jarrekk/Jalpc" target="_blank"><span class="navy">Jalpc</span></a>
-                  
-                  </h4>
-                  <p><span data-i18n="projects.jalpc">Jalpc is a simple, beautiful and swift theme for Jekyll. It has comprehensive function, it can be easily used and edited. It's adapted for many kinds devices.</span></p>
-                  
-                  <div user="jarrekk" repo="Jalpc" class="ghbtn">
-                      <a target="_blank" style="width: 65px;" href="https://github.com/jarrekk/Jalpc/stargazers" class="btn btn-white btn-xs star"><i class="fa fa-star"></i> ...</a>&emsp;&emsp;
-                      <a target="_blank" style="width: 65px;" href="https://github.com/jarrekk/Jalpc/network" class="btn btn-white btn-xs fork"><i class="fa fa-code-fork"></i> ...</a>
-                      <div style="height: 10px;"></div>
-                  </div>
-                  
-              </div>
-          </div>
-      
-            
-            
-            <div class="col-sm-6 wow  fadeInRight ">
-            
-              <div class="team-member">
-                  <img src="/homepage/static/assets/img/landing/leetcode.png" class="img-responsive img-circle img-small" alt="">
-                  <h4>
-                  
-                  <a href="https://github.com/kamyu104/LeetCode" target="_blank"><span class="navy">LeetCode</span></a>
-                  
-                  </h4>
-                  <p><span data-i18n="projects.leetcode">LeetCode is a website which has many valuable algorithmic questions, this is a project of kamyu104's, I forked it and added more solutions, if you like Python you can find fun from this project.</span></p>
-                  
-                  <div user="kamyu104" repo="LeetCode" class="ghbtn">
-                      <a target="_blank" style="width: 65px;" href="https://github.com/kamyu104/LeetCode/stargazers" class="btn btn-white btn-xs star"><i class="fa fa-star"></i> ...</a>&emsp;&emsp;
-                      <a target="_blank" style="width: 65px;" href="https://github.com/kamyu104/LeetCode/network" class="btn btn-white btn-xs fork"><i class="fa fa-code-fork"></i> ...</a>
-                      <div style="height: 10px;"></div>
-                  </div>
-                  
-              </div>
-          </div>
-      
-            
-            
-                
-            <div class="col-sm-6 wow  fadeInLeft col-sm-offset-3 ">
-                
-            
-              <div class="team-member">
-                  <img src="/homepage/static/assets/img/landing/familycode.png" class="img-responsive img-circle img-small" alt="">
-                  <h4>
-                  
-                  <span class="navy">FamilyCODE Wchat</span>
-                  
-                  </h4>
-                  <p><span data-i18n="projects.familycode">This is a shopping mall in wechat, it promotes gene detection. Since time is precious, I write this website with Django, jQuery, weui. This is WuxiNextcode's major product. You can scan project's picture by wechat.</span></p>
-                  
-              </div>
-          </div>
-      
-    </div>
-</div>
-<br>
-
-  </section>
-
-  
-  <section id="blog" class="features  testimonials navy-section" style="margin-top: 0;">
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center wow zoomIn" id="i18_blog">
-            <div style="height: 80px;"></div>
-            <a class="btn btn-lg btn-default btn-rounded btn-outline wow bounceIn" href="/homepage/blog/"><span data-i18n="blog.my_blog">My Blog</span></a>
-            <div style="height: 80px;"></div>
-        </div>
-    </div>
-</div>
-
-  </section>
-
-  
-  <section id="links" class="features  gray-section  contact" style="margin-top: 0;">
-    <div class="container" id="i18_link">
-    <div class="row m-b-lg">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="link.link">Link</span></h1>
-        </div>
-    </div>
-    <div class="row">
+<div class="index-header blog animated fadeIn">
     
-        
-        
-        <div class="col-sm-4 wow  fadeInLeft ">
-        
-        <div class="team-member">
-            <h4><span class="navy">Name 1</span> </h4>
-            <p>CEO</p>
-            <ul class="list-inline social-icon">
-                <li><a href="https://www.google.com" target="blank"><i class="fa fa-link"></i></a>
-                </li>
-                <li><a href="mailto:ceo@google.com"><i class="fa fa-envelope-o"></i></a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    
-        
-        
-        <div class="col-sm-4 wow  zoomIn ">
-        
-        <div class="team-member">
-            <h4><span class="navy">Donate</span> Jalpc</h4>
-            <p>Support Jalpc</p>
-            <ul class="list-inline social-icon">
-                <li><a href="http://www.jack003.com/donate/" target="blank"><i class="fa fa-link"></i></a>
-                </li>
-                <li><a href="mailto:me@jack003.com"><i class="fa fa-envelope-o"></i></a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    
-        
-        
-            
-        <div class="col-sm-4 wow  zoomIn ">
-            
-        
-        <div class="team-member">
-            <h4><span class="navy">LN</span> FN</h4>
-            <p>COO</p>
-            <ul class="list-inline social-icon">
-                <li><a href="https://github.com" target="blank"><i class="fa fa-link"></i></a>
-                </li>
-                <li><a href="mailto:coo@google.com"><i class="fa fa-envelope-o"></i></a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-            <p id="jalpc_site_pv"><strong>&copy; 2017 Mancoxu</strong></p>
-        </div>
+</div>
+
+	
+
+        <div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <div class="navy-line"></div>
+        <h1>Latest Blog</h1>
     </div>
 </div>
 
-  </section>
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="wrapper wrapper-content animated fadeInRight">
 
-<style type="text/css">
-    iframe {
-  -moz-transform: scale(0.25, 0.25);
-  -webkit-transform: scale(0.25, 0.25);
-  -o-transform: scale(0.25, 0.25);
-  -ms-transform: scale(0.25, 0.25);
-  transform: scale(0.25, 0.25);
-  -moz-transform-origin: top left;
-  -webkit-transform-origin: top left;
-  -o-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-}
-</style>
-<iframe src="https://www.maimemo.com/share/page/?uid=779139&pid=660" style="display: none;"></iframe>
+            <!-- latest 10 blog -->
+			
+            <div class="vote-item">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="vote-actions">
+                        </div>
+                        <a href="/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html" class="vote-title">
+                            3 Steps (2 minutes) to Setup Your Personal Website with Jalpc
+                        </a>
+                        <div class="vote-info">
+                        
+                        
+                            <i class="fa fa-comments-o"> </i> <a>Comments (<span class='disqus-comment-count' data-disqus-url="http://localhost:4000/mac/2017/01/31/3-steps-to-setup-website-with-Jalpc.html">0</span>)</a>
+                        
+                            <i class="fa fa-clock-o"></i> <a>31 Jan 2017</a>
+                            <i class="fa fa-user"></i> <a>GitHub</a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="vote-icon">
+                            <i class="fa icon-html"> </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+</div>
 
 
 
 	
-		
-<script async defer src="/homepage/static/js/github_api.min.js"></script>
-
-
-
-
-<!-- Google analytics -->
+	    <!-- Google analytics -->
 
 
 <!-- GrowingIO -->
 
+
+
+
+  <!-- <script id="dsq-count-scr" src="//mancoxu.disqus.com/count.js" async></script>
+  <script type="text/javascript">
+    var disqusShortName = "mancoxu";
+
+    var disqusPublicKey = "tj2MPaNlHMONwTH5bGDNSXyaBpW7q282MeUzh5CwcjJerNhK8Kxk3aWo7IckzTX7";
+
+    var urlArray = [];
+    $('.disqus-comment-count').each(function () {
+      var url = $(this).attr('data-disqus-url');
+      urlArray.push('link:' + url);
+    });
+    $.ajax({
+      type: 'GET',
+      url: "https://disqus.com/api/3.0/threads/set.jsonp",
+      data: { api_key: disqusPublicKey, forum : disqusShortName, thread : urlArray },
+      cache: false,
+      dataType: "jsonp",
+      success: function (result) {
+        for (var i in result.response) {
+          var count = result.response[i].posts;
+          if ( count ) {
+            $('.disqus-comment-count[data-disqus-url="' + result.response[i].link + '"]').html(count);
+          }
+        }
+      }
+    });
+</script> -->
 
 
 	
