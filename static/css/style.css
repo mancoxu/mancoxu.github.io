@@ -7840,6 +7840,10 @@ body.landing-page {
         padding: 9px 10px;
         border: none
     }
+    .landing-page .navbar-fixed-top.navbar-scroll{
+        height: 100%;
+        background: #fff;
+    }
 }
 
 body.rtls .theme-config,
