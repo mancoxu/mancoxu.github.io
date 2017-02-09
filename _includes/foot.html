@@ -1,7 +1,7 @@
 {% include analytics.html %}
 
 {% if site.disqus %}
-  <script id="dsq-count-scr" src="//mancoxu.disqus.com/count.js" async></script>
+  <!-- <script id="dsq-count-scr" src="//mancoxu.disqus.com/count.js" async></script>
   <script type="text/javascript">
     var disqusShortName = "{{ site.disqus.name }}";
 
@@ -27,5 +27,23 @@
         }
       }
     });
-</script>
+</script> -->
+{% endif %}
+
+{% if site.duoshuo %}
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"{{site.duoshuo.name}}"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
 {% endif %}
