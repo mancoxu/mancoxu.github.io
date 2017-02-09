@@ -7841,7 +7841,6 @@ body.landing-page {
         border: none
     }
     .landing-page .navbar-fixed-top.navbar-scroll{
-        height: 100%;
         background: #fff;
     }
 }
