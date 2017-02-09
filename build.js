@@ -2,6 +2,7 @@ var UglifyJS = require('uglify-js');
 var CleanCSS = require('clean-css');
 require('shelljs/global');
 var fs = require('fs');
+require('colors');
 
 nowDate = new Date();
 nowDateStr = nowDate.toISOString().slice(0,10).replace(/-/g,"");
@@ -38,7 +39,7 @@ function compressjs(filename, filelist){
 	});
 
 	fs.writeFileSync('static/assets/' + filename, result.code);
-	console.log("Index page js files compress succeed. You can find it at \"static/assets\".\n");
+	console.log("Index page js files compress succeed. You can find it at \"static/assets\".\n".green);
 }
 
 // compress css files function
@@ -70,7 +71,7 @@ function compresscss(filename, filelist) {
 	}).minify(result.styles);
 
 	fs.writeFileSync('static/assets/' + filename, output.styles);
-	console.log("Blog page css files compress succeed. You can find it at \"static/assets\".\n");
+	console.log("Blog page css files compress succeed. You can find it at \"static/assets\".\n".green);
 }
 
 // compress js files of 404 page
