@@ -3699,9 +3699,7 @@ body.tour-open .animated {
     padding: 15px 20px;
     border-bottom: 1px solid #e7eaec
 }
-html,body{
-    overflow: hidden;
-}
+
 body {
     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #2f4050;
@@ -7485,17 +7483,18 @@ body.landing-page {
 
 .landing-page .index-header{
     height: 470px;
-    width: 100%
+    width: 100%;
 }
 .landing-page .index-header.index{
     background: url(../img/landing/header-one.jpg) 0 -140px fixed no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    
 }
 
 .landing-page .index-header.blog{
     height: 400px;
     background: url(../img/landing/header-blog.jpg) 0 -180px fixed no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .landing-page .caption-link {
@@ -7635,7 +7634,7 @@ body.landing-page {
     padding-bottom: 90px;
     background-color: #3385FF;
     background: url(../img/landing/avatar_all.jpg) 0 0 fixed;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .landing-page .big-icon {
