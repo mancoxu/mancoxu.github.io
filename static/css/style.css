@@ -7843,6 +7843,7 @@ body.landing-page {
         border: none
     }
     .landing-page .navbar-fixed-top.navbar-scroll{
+        box-shadow: 0 1px 5px #eee;
         background: #fff;
     }
 }
