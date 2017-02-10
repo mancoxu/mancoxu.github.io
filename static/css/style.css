@@ -58,6 +58,13 @@ h6 {
     font-size: 10px
 }
 
+pre{
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 5px #eee inset;
+}
+
+
 .dropdown-alerts li a,
 .dropdown-menu,
 .dropdown-messages li a {
@@ -3864,6 +3871,15 @@ video {
 .wrapper-content {
     padding: 20px 10px 40px
 }
+.wrapper-content h1,.wrapper-content h2,.wrapper-content h3,.wrapper-content h4,.wrapper-content h5,.wrapper-content h6{
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+.wrapper-content li{
+    margin-top: 0.25em;
+}
 
 #page-wrapper {
     padding: 0 15px;
@@ -5878,7 +5894,9 @@ dd.project-people {
 
 .article-title {
     text-align: center;
-    margin: 40px 0 100px
+    margin: 40px 0 50px;
+    padding-bottom:40px;
+    border-bottom: 1px solid #ddd;
 }
 
 .article .ibox-content {
