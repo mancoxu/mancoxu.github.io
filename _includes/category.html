@@ -1,5 +1,5 @@
 <!-- jPages -->
-<script src="{{"/static/assets/jPage-20170209.min.js" | prepend: site.baseurl}}"></script>
+<script src="{{"/static/assets/jPage-20170210.min.js" | prepend: site.baseurl}}"></script>
 <script type="text/javascript">
 $(function(){
   /* initiate the plugin */
@@ -14,7 +14,7 @@ $(function(){
 });
 </script>
 
-<div class="row">
+<div class="container">
     <div class="col-lg-12 text-center">
         <div class="navy-line"></div>
         {% assign category = page.url | remove:'/' | capitalize %}
@@ -24,14 +24,14 @@ $(function(){
         <h1>{{ category }}</h1>
     </div>
 </div>
-<div class="wrapper wrapper-content  animated fadeInRight blog">
+<div class="wrapper wrapper-content  animated fadeInRight blog container">
     <div class="row">
-        <ul id="pag-itemContainer" style="list-style:none;">
+        <ul id="pag-itemContainer" style="list-style:none;padding: 0;">
             {% assign counter = 0 %}
             {% for post in site.categories[category] %}
             {% assign counter = counter | plus: 1 %}
             <li>
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-12 col-lg-offset-0">
                     <div class="ibox">
                         <div class="ibox-content">
                             <a href="{{ post.url | prepend: site.baseurl }}" class="btn-link">
