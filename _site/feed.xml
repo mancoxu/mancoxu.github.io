@@ -5,8 +5,8 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Feb 2017 19:02:13 +0800</pubDate>
-    <lastBuildDate>Mon, 13 Feb 2017 19:02:13 +0800</lastBuildDate>
+    <pubDate>Mon, 13 Feb 2017 19:03:31 +0800</pubDate>
+    <lastBuildDate>Mon, 13 Feb 2017 19:03:31 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -377,7 +377,6 @@ def hello():
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;getinitialstate&quot;&gt;getInitialState&lt;/h3&gt;
 
 &lt;p&gt;对于组件的每个实例来说，这个方法的调用&lt;strong&gt;有且只有一次，&lt;/strong&gt;用来初始化每个实例的 state，在这个方法里，可以访问组件的 props。每一个React组件都有自己的 state，其与 props 的区别在于 state只存在组件的内部，props 在所有实例中共享。&lt;/p&gt;
@@ -422,12 +421,10 @@ def hello():
 
 &lt;p&gt;&lt;strong&gt;但是不要直接修改 this.state，要通过 this.setState 方法来修改。&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;componentwillmount&quot;&gt;componentWillMount&lt;/h3&gt;
 
 &lt;p&gt;在首次渲染执行前立即调用且仅调用一次。如果在这个方法内部调用 setState 并不会触发重新渲染，这也是在 render 方法调用之前修改 state 的最后一次机会。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;render&quot;&gt;render&lt;/h3&gt;
 
 &lt;p&gt;该方法会创建一个虚拟DOM，用来表示组件的输出。对于一个组件来讲，render方法是唯一一个必需的方法。render方法需要满足下面几点：&lt;/p&gt;
@@ -442,7 +439,6 @@ def hello():
 
 &lt;p&gt;render方法返回的结果并不是真正的DOM元素，而是一个虚拟的表现，类似于一个DOM tree的结构的对象。react之所以效率高，就是这个原因。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;componentdidmount&quot;&gt;componentDidMount&lt;/h3&gt;
 
 &lt;p&gt;该方法不会在服务端被渲染的过程中调用。该方法被调用时，已经渲染出真实的 DOM，可以再该方法中通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;this.getDOMNode()&lt;/code&gt; 访问到真实的 DOM(推荐使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;ReactDOM.findDOMNode())&lt;/code&gt;。&lt;/p&gt;
@@ -483,7 +479,6 @@ def hello():
 
 &lt;p&gt;需要注意的是，由于 &lt;code class=&quot;highlighter-rouge&quot;&gt;this.refs.[refName]&lt;/code&gt; 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;存在期&quot;&gt;存在期&lt;/h2&gt;
 
 &lt;p&gt;此时组件已经渲染好并且用户可以与它进行交互，比如鼠标点击，手指点按，或者其它的一些事件，导致应用状态的改变，你将会看到下面的方法依次被调用&lt;/p&gt;
@@ -498,7 +493,6 @@ def hello():
 
 &lt;p&gt;5、componentDidUpdate&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;componentwillreceiveprops&quot;&gt;componentWillReceiveProps&lt;/h3&gt;
 
 &lt;p&gt;组件的 props 属性可以通过父组件来更改，这时，componentWillReceiveProps 将来被调用。可以在这个方法里更新 state,以触发 render 方法重新渲染组件。&lt;/p&gt;
@@ -515,7 +509,6 @@ def hello():
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;shouldcomponentupdate&quot;&gt;shouldComponentUpdate&lt;/h3&gt;
 
 &lt;p&gt;如果你确定组件的 props 或者 state 的改变不需要重新渲染，可以通过在这个方法里通过返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; 来阻止组件的重新渲染，返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;则不会执行 render 以及后面的 componentWillUpdate，componentDidUpdate 方法。&lt;/p&gt;
@@ -531,17 +524,14 @@ def hello():
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;componentwillupdate&quot;&gt;componentWillUpdate&lt;/h3&gt;
 
 &lt;p&gt;这个方法和 componentWillMount 类似，在组件接收到了新的 props 或者 state 即将进行重新渲染前，&lt;code class=&quot;highlighter-rouge&quot;&gt;componentWillUpdate(object nextProps, object nextState)&lt;/code&gt; 会被调用，注意不要在此方面里再去更新 props 或者 state。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;componentdidupdate&quot;&gt;componentDidUpdate&lt;/h3&gt;
 
 &lt;p&gt;这个方法和 componentDidMount 类似，在组件重新被渲染之后，&lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidUpdate(object prevProps, object prevState)&lt;/code&gt;会被调用。可以在这里访问并修改 DOM。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;销毁时&quot;&gt;销毁时&lt;/h2&gt;
 
 &lt;h3 id=&quot;componentwillunmount&quot;&gt;componentWillUnmount&lt;/h3&gt;
@@ -558,7 +548,6 @@ def hello():
 
 &lt;p&gt;4、componentDidMount&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;反模式&quot;&gt;反模式&lt;/h2&gt;
 
 &lt;p&gt;在 getInitialState 方法中，尝试通过 this.props 来创建 state 的做法是一种反模式。&lt;/p&gt;
@@ -601,7 +590,6 @@ def hello():
 
 &lt;p&gt;如果只是简单的初始化 state，那么应用反模式是没有问题的。&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
 
 &lt;p&gt;以下面的一张图总结组件的生命周期：&lt;/p&gt;
