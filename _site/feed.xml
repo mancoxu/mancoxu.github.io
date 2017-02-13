@@ -5,9 +5,279 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 10 Feb 2017 15:51:03 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Feb 2017 15:51:03 +0800</lastBuildDate>
+    <pubDate>Mon, 13 Feb 2017 15:04:52 +0800</pubDate>
+    <lastBuildDate>Mon, 13 Feb 2017 15:04:52 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Markdown 常用语法</title>
+        <description>&lt;h3 id=&quot;一-简单功能&quot;&gt;一. 简单功能&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;功能&lt;/th&gt;
+      &lt;th&gt;效果&lt;/th&gt;
+      &lt;th&gt;Markdown代码&lt;/th&gt;
+      &lt;th&gt;备注&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;粗体&lt;/td&gt;
+      &lt;td&gt;粗体&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;粗体&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;两边加**&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;斜体&lt;/td&gt;
+      &lt;td&gt;斜体&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;斜体&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;两边加_&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;中划线&lt;/td&gt;
+      &lt;td&gt;中划线&lt;/td&gt;
+      &lt;td&gt;&lt;del&gt;中划线&lt;/del&gt;&lt;/td&gt;
+      &lt;td&gt;两边加~~&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;单行代码&lt;/td&gt;
+      &lt;td&gt;Log.i(“Hello World!”)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Log.i(&quot;Hello World!&quot;)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;两边加`&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;插入图片&lt;/td&gt;
+      &lt;td&gt;Image&lt;/td&gt;
+      &lt;td&gt;&lt;img src=&quot;http://www.trinea.cn/rss.png&quot; alt=&quot;Image&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;[] 中间为占位符,() 中间为图片链接&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;链接&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;http://www.github.com&quot;&gt;Visit Github&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[Visit Github](http://www.github.com)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;[] 中间为显示文字,() 中间为链接&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;二-其他功能&quot;&gt;二. 其他功能&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-换行&quot;&gt;1. 换行&lt;/h4&gt;
+
+&lt;p&gt;在需要换行的地方敲击两次空格和一个回车键即可，如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;这是第一行(空格)(空格)(回车)
+这是第二行
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tip: 多条新行都会被视为一行&lt;/p&gt;
+
+&lt;h4 id=&quot;2-标题&quot;&gt;2. 标题&lt;/h4&gt;
+
+&lt;p&gt;Markdown 提供了六种规格的标题，分别对应 Html 标签中的&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;h6&amp;gt;&lt;/code&gt;，通过添加不同数量的#字符可以实现不同大小的标题，如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+# 最大的标题(相当于一个&amp;lt;h1&amp;gt;标签)
+## 次大的标题(相当于一个&amp;lt;h2&amp;gt;标签)
+...
+###### 最小的标题(相当于一个&amp;lt;h6&amp;gt;标签)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tip: # 越多，标题越小&lt;/p&gt;
+
+&lt;h4 id=&quot;3-列表&quot;&gt;3. 列表&lt;/h4&gt;
+
+&lt;h5 id=&quot;31-有序列表&quot;&gt;3.1 有序列表&lt;/h5&gt;
+
+&lt;p&gt;数字 + . + 空格即可，以下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+1. 项目1  
+2. 项目2  
+3. 项目3
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果为：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;项目1&lt;/li&gt;
+  &lt;li&gt;项目2&lt;/li&gt;
+  &lt;li&gt;项目3&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;32-无序列表&quot;&gt;3.2 无序列表&lt;/h5&gt;
+
+&lt;p&gt;以 * 和空格开头即可，以下代码:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+* 项目1
+* 项目2
+* 项目3
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;项目1&lt;/li&gt;
+  &lt;li&gt;项目2&lt;/li&gt;
+  &lt;li&gt;项目3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;33-子项目表示&quot;&gt;3.3 子项目表示：&lt;/h5&gt;
+
+&lt;p&gt;子项目缩进一个 tab 并加 * 和 空格表示，以下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+* 项目1
+    * 子项目1
+    * 子项目2
+* 项目2
+    * 子项目1
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;项目1
+    &lt;ul&gt;
+      &lt;li&gt;子项目1&lt;/li&gt;
+      &lt;li&gt;子项目2&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;项目2
+    &lt;ul&gt;
+      &lt;li&gt;子项目1&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;4-代码块&quot;&gt;4. 代码块&lt;/h4&gt;
+
+&lt;p&gt;以 ``` 和 ``` 包含，以下代码：&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;def hello():
+    print ‘Hello World!’&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+def hello():
+    print 'Hello World!'
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;GFM 扩展了 Markdown 的代码块功能，通过在上面第一个 ``` 后添加语言名称，使不同语言展现不同的代码高亮风格，以下代码:&lt;/p&gt;
+
+&lt;p&gt;```java&lt;/p&gt;
+
+&lt;p&gt;public static void main(String[] args){
+    System.out.println(“Hello World!”);
+}&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;5-表格&quot;&gt;5. 表格&lt;/h4&gt;
+
+&lt;p&gt;标准的 Markdown 中并不支持表格，但 GFM 可以，表头前空一行，以 &lt;code class=&quot;highlighter-rouge&quot;&gt;---&lt;/code&gt; 做为表头分隔，以 &lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt; 做为列分隔，以下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+表头1|表头2
+------|------
+单元格1|单元格2
+单元格3|单元格4
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;表头1&lt;/th&gt;
+      &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;单元格1&lt;/td&gt;
+      &lt;td&gt;单元格2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;单元格3&lt;/td&gt;
+      &lt;td&gt;单元格4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+而且还可以通过在表头分隔符中添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt; 来决定单元格的对齐方向，以下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+表头1|表头2|表头3
+:--|:--:|--:
+左1|中1|右1
+左2|中2|右2
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果为：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;表头1&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;表头2&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;表头3&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;左1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;中1&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;右1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;左2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;中2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;右2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;6-特殊字符转义&quot;&gt;6. 特殊字符转义&lt;/h4&gt;
+
+&lt;p&gt;如果需要在正文里使用特殊字符的话，可以用 &lt;code class=&quot;highlighter-rouge&quot;&gt;\&lt;/code&gt; 来转义&lt;/p&gt;
+
+&lt;p&gt;最后虽然 GFW 支持 Html 标签，不过本次项目中不允许在 MarkDown 中插入 Html 标签&lt;/p&gt;
+
+&lt;p&gt;原文链接：&lt;a href=&quot;https://github.com/android-cn/blog/blob/master/dev-tool/markdown.md&quot;&gt;https://github.com/android-cn/blog/blob/master/dev-tool/markdown.md&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Feb 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/markdown/2017/02/13/Markdown-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://localhost:4000/markdown/2017/02/13/Markdown-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95.html</guid>
+        
+        <category>markdown</category>
+        
+        
+        <category>markdown</category>
+        
+      </item>
     
       <item>
         <title>Git 命令及建议</title>

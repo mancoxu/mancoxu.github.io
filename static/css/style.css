@@ -61,7 +61,6 @@ h6 {
 pre{
     background-color: #f8f8f8;
     border: 1px solid #eee;
-    box-shadow: 1px 1px 5px #eee inset;
 }
 
 
@@ -3871,12 +3870,7 @@ video {
 .wrapper-content {
     padding: 20px 10px 40px
 }
-.wrapper-content h1,.wrapper-content h2,.wrapper-content h3,.wrapper-content h4,.wrapper-content h5,.wrapper-content h6{
-    margin-top: 24px;
-    margin-bottom: 16px;
-    font-weight: 600;
-    line-height: 1.25;
-}
+
 .wrapper-content li{
     margin-top: 0.25em;
 }
@@ -3910,7 +3904,10 @@ video {
 .ibox-title h3,
 .ibox-title h4,
 .ibox-title h5 {
-    margin-top: 5px
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
 }
 
 ol.unstyled,
@@ -8120,4 +8117,31 @@ body.rtls.top-navigation .footer.fixed {
 
 .rtls #right-sidebar.sidebar-open {
     left: 0
+}
+
+
+
+
+table {
+    width: 100%;
+    overflow: auto;
+    font-size: 14px;
+}
+
+table th, table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+}
+
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+table th {
+    font-weight: 600;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
 }
