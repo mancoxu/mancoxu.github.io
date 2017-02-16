@@ -5,9 +5,138 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 Feb 2017 17:12:41 +0800</pubDate>
-    <lastBuildDate>Tue, 14 Feb 2017 17:12:41 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Feb 2017 14:55:26 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Feb 2017 14:55:26 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>tar 命令</title>
+        <description>&lt;h2 id=&quot;tar命令文件压缩与解压&quot;&gt;tar命令文件压缩与解压&lt;/h2&gt;
+
+&lt;p&gt;tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用tar命令，可以把一大堆的文件和目录全部打包成一个文件，这对于备份文件或将几个文件组合成为一个文件以便于网络传输是非常有用的。&lt;/p&gt;
+
+&lt;p&gt;首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。&lt;/p&gt;
+
+&lt;p&gt;为什么要区分这两个概念呢？这源于Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩&lt;/p&gt;
+
+&lt;h3 id=&quot;语法&quot;&gt;语法&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar(选项)(参数)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;选项&quot;&gt;选项&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+ -A或--catenate：新增文件到以存在的备份文件；
+ -B：设置区块大小； 
+ -c或--create：建立新的备份文件； -C &amp;lt;目录&amp;gt;：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。 
+ -d：记录文件的差别； 
+ -x或--extract或--get：从备份文件中还原文件； 
+ -t或--list：列出备份文件的内容； 
+ -z或--gzip或--ungzip：通过gzip指令处理备份文件； 
+ -Z或--compress或--uncompress：通过compress指令处理备份文件； 
+ -f&amp;lt;备份文件&amp;gt;或--file=&amp;lt;备份文件&amp;gt;：指定备份文件； 
+ -v或--verbose：显示指令执行过程； 
+ -r：添加文件到已经压缩的文件； 
+ -u：添加改变了和现有的文件到已经存在的压缩文件； 
+ -j：支持bzip2解压文件； 
+ -v：显示操作过程； 
+ -l：文件系统边界设置； 
+ -k：保留原有文件不覆盖； 
+ -m：保留文件不被覆盖； 
+ -w：确认压缩文件的正确性； 
+ -p或--same-permissions：用原来的文件权限还原文件； 
+ -P或--absolute-names：文件名使用绝对名称，不移除文件名称前的“/”号； 
+ -N &amp;lt;日期格式&amp;gt; 或 --newer=&amp;lt;日期时间&amp;gt;：只将较指定日期更新的文件保存到备份文件里；
+ --exclude=&amp;lt;范本样式&amp;gt;：排除符合范本样式的文件。
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;参数&quot;&gt;参数&lt;/h3&gt;
+
+&lt;p&gt;文件或目录：指定要打包的文件或目录列表。&lt;/p&gt;
+
+&lt;h3 id=&quot;实例&quot;&gt;实例&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;将文件全部打包成tar包：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+ tar -cvf log.tar log2012.log 仅打包，不压缩！ 
+ tar -zcvf log.tar.gz log2012.log 打包后，以 gzip 压缩 
+ tar -jcvf log.tar.bz2 log2012.log 打包后，以 bzip2 压缩 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在选项&lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt;之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。 如果加&lt;code class=&quot;highlighter-rouge&quot;&gt;z&lt;/code&gt;选项，则以.tar.gz或.tgz来代表gzip压缩过的tar包；如果加&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;选项，则以.tar.bz2来作为tar包名。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;查阅上述tar包内有哪些文件：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar -ztvf log.tar.gz
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于我们使用 gzip 压缩的log.tar.gz，所以要查阅log.tar.gz包内的文件时，就得要加上&lt;code class=&quot;highlighter-rouge&quot;&gt;z&lt;/code&gt;这个选项了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;将tar包解压缩：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar -zxvf /opt/soft/test/log.tar.gz
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在预设的情况下，我们可以将压缩档在任何地方解开的&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;只将tar内的部分文件解压出来：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar -zxvf /opt/soft/test/log30.tar.gz log2013.log
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我可以透过tar&lt;code class=&quot;highlighter-rouge&quot;&gt; -ztvf&lt;/code&gt;来查阅 tar 包内的文件名称，如果单只要一个文件，就可以透过这个方式来解压部分文件！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;文件备份下来，并且保存其权限：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar -zcvpf log31.tar.gz log2014.log log2015.log log2016.log
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个&lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;的属性是很重要的，尤其是当您要保留原本文件的属性时。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;在文件夹当中，比某个日期新的文件才备份：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar -N &quot;2012/11/13&quot; -zcvf log17.tar.gz test
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;备份文件夹内容是排除部分文件：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+tar --exclude scf/sever  -zcvf scf.tar.gz scf/*
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;其实最简单的使用 tar 就只要记忆底下的方式即可：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+压　缩：tar -jcv -f filename.tar.bz2 要被压缩的文件或目录名称
+查　询：tar -jtv -f filename.tar.bz2
+解压缩：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2017/02/16/tar%E5%91%BD%E4%BB%A4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2017/02/16/tar%E5%91%BD%E4%BB%A4.html</guid>
+        
+        <category>linux</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
     
       <item>
         <title>JavaScript判断浏览器类型及版本</title>
