@@ -5,9 +5,323 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 22 Feb 2017 10:42:04 +0800</pubDate>
-    <lastBuildDate>Wed, 22 Feb 2017 10:42:04 +0800</lastBuildDate>
+    <pubDate>Thu, 23 Feb 2017 16:13:55 +0800</pubDate>
+    <lastBuildDate>Thu, 23 Feb 2017 16:13:55 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Vim 常用命令</title>
+        <description>&lt;p&gt;使用 Vim 的时间不长，但如今已经离不开熟悉的 Vim 编辑模式了。 Vim 的学习曲线是非常陡的，一开始学习的时候，面对很多的操作命令要去记住，常常望而却步。&lt;/p&gt;
+
+&lt;p&gt;其实，只要记住一些常用的命令，加之在工作中坚持使用 Vim 进行编辑，很快就能得心应手了。&lt;/p&gt;
+
+&lt;h3 id=&quot;光标移动cursor-movement&quot;&gt;光标移动(Cursor Movement)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释）&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;表示往左，&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;表示往下，&lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt;表示往右，&lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;表示往上&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+f&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;上一页&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;下一页&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;w&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;e&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;W&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;跳到单词的后面，小写包括标点&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;以单词为单位往前跳动光标，小写包含标点&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;O&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;开启新的一行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;一行的开始&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;一行的结尾&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gg&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;文档的第一行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[N]G&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;文档的第N行或者最后一行&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;插入模式insert-mode&quot;&gt;插入模式(Insert Mode)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;插入到光标前面&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;插入到行的开始位置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;插入到光标的后面&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;插入到行的最后位置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;o&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;O&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;新开一行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Esc&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;关闭插入模式&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;编辑editing&quot;&gt;编辑(Editing)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释）&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;r&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;在插入模式替换光标所在的一个字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;J&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;合并下一行到上一行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除光标所在的一个字符, 光标还在当行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除光标所在的一行，光标还在当行，不同于&lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;u&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;撤销上一步操作&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+r&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;恢复上一步操作&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;重复最后一个命令&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;~&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;变换为大写&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[N]&amp;gt;&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;一行或N行往右移动一个tab&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[N]&amp;lt;&amp;lt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;一行或N行往左移动一个tab&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;关闭exiting&quot;&gt;关闭(Exiting)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:w&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;保存&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:wq&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;:x&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;保存并关闭&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:q&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;关闭（已保存）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:q!&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;强制关闭&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;搜索search&quot;&gt;搜索(Search)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/pattern&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;搜索（非插入模式)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;?pattern&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;往后搜索&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;光标到达搜索结果的前一个目标&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;光标到达搜索结果的后一个目标&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;视觉模式visual-mode&quot;&gt;视觉模式(Visual Mode)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;选中一个或多个字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;V&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;选中一行&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;剪切和复制cut-and-paste&quot;&gt;剪切和复制(Cut and Paste)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除一行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dw&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除一个单词&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除后一个字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除前一个字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;删除一行最后一个字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[N]yy&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;复制一行或者N行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yw&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;复制一个单词&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;粘贴&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;窗口操作&quot;&gt;窗口操作&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;作用（解释)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:split&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;水平方向分割出一个窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:vsplit&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;垂直方向分割出一个窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:close&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;关闭窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+W&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;切换窗口, &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;到左边窗口，&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;到下方窗口，&lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt;到上方窗口，&lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;到右边窗口&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+</description>
+        <pubDate>Thu, 23 Feb 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2017/02/23/Vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2017/02/23/Vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html</guid>
+        
+        <category>Vim</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
     
       <item>
         <title>JavaScript原生数组API</title>
