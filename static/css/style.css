@@ -24,6 +24,9 @@ button.dim {
 .todo-list {
     list-style: none
 }
+img{
+    max-width: 100%;
+}
 
 h1,
 h2,
