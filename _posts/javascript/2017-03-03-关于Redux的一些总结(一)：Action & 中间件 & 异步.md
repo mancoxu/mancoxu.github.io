@@ -404,7 +404,7 @@ export let addTodoWithPromise = createAction(CONSTANT.ADD_TO_DO_PROMISE, (val) =
 
 ![img](https://camo.githubusercontent.com/c6934ee40a473d7c16ae824e08938f208d16c21f/68747470733a2f2f7365676d656e746661756c742e636f6d2f696d672f6256436a4a50)
 
-示例源码：[redux-demo]
+示例源码：[redux-demo](https://github.com/dwqs/blog/tree/master/redux-demo)
 
 
 
