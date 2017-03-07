@@ -292,7 +292,3 @@ class CommentList extends Component {
 
 关于 connect 比较详细的解释可以参考：[React 实践心得：react-redux 之 connect 方法详解](http://taobaofed.org/blog/2016/08/18/react-redux-connect/)
 
--------------------------------
-
-原文链接：<https://github.com/dwqs/blog/issues/38>
-

@@ -406,9 +406,7 @@ export let addTodoWithPromise = createAction(CONSTANT.ADD_TO_DO_PROMISE, (val) =
 
 示例源码：[redux-demo]
 
--------------------------------
 
-原文链接：<https://github.com/dwqs/blog/issues/35>
 
 
 
