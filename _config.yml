@@ -45,7 +45,8 @@ gio:  # if you wanna this feature, go to https://www.growingio.com/ to get your 
   # id:
 
 ## baidu
-bd: # 百度统计
+#bd: # 百度统计
+  #id: 6d5a4485dcaf6d61f1238cec44a28ec4
 
 ## donation
 donation: off  # type 'on'/'off' to choice display donation button at post page or not
