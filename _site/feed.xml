@@ -5,8 +5,8 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 10 Mar 2017 16:22:14 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Mar 2017 16:22:14 +0800</lastBuildDate>
+    <pubDate>Fri, 10 Mar 2017 16:27:01 +0800</pubDate>
+    <lastBuildDate>Fri, 10 Mar 2017 16:27:01 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -451,8 +451,11 @@ Expires, Cache-Control，和/或Vary，假如其值可能与之前相同变量�
     
       <item>
         <title>github有用的chrome插件</title>
-        <description>&lt;p&gt;大家平时会用github在线preview代码、查看 README.md 。如果项目层级关系比较深，在线找相应文件时点来点去就会懵圈了、README.md比较文字比较多时，要找自己想找的锚点会翻动整个页面来找，很麻烦。那么福利来了，chrome有两款插件可以让我们在线一览项目tree和直接定位README相应锚点。
-上链接！&lt;/p&gt;
+        <description>&lt;p&gt;大家平时会用github在线preview代码、查看 README.md 。如果项目层级关系比较深，在线找相应文件时点来点去就会懵圈了、README.md比较文字比较多时，要找自己想找的锚点会翻动整个页面来找，很麻烦。&lt;/p&gt;
+
+&lt;p&gt;那么福利来了，chrome有两款插件可以让我们在线一览项目tree和直接定位README相应锚点。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;上链接！!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;octotree&quot;&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc&quot;&gt;Octotree&lt;/a&gt;&lt;/h2&gt;
 
