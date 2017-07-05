@@ -5,9 +5,30 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 05 Jul 2017 10:47:24 +0800</pubDate>
-    <lastBuildDate>Wed, 05 Jul 2017 10:47:24 +0800</lastBuildDate>
+    <pubDate>Wed, 05 Jul 2017 10:57:42 +0800</pubDate>
+    <lastBuildDate>Wed, 05 Jul 2017 10:57:42 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>git 恢复单个文件的历史版本</title>
+        <description>&lt;p&gt;首先查看该文件的历史版本信息：&lt;code class=&quot;highlighter-rouge&quot;&gt;git log ../index.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;记录下需要恢复的commitId：如 027b8743d0176948734e651ee9230522d691e655&lt;/p&gt;
+
+&lt;p&gt;恢复该文件：&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset 027b8743d0176948734e651ee9230522d691e655 ../index.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;提交 git： &lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -m &quot;revert old file&quot;&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/git/2017/07/05/git-%E6%81%A2%E5%A4%8D%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC.html</link>
+        <guid isPermaLink="true">http://localhost:4000/git/2017/07/05/git-%E6%81%A2%E5%A4%8D%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC.html</guid>
+        
+        <category>Git</category>
+        
+        
+        <category>Git</category>
+        
+      </item>
     
       <item>
         <title>Git 把一个分支中的几个文件放到另一个分支（或者一个分支中的commit放在另一个分支）</title>
