@@ -7517,6 +7517,12 @@ body.landing-page {
     background-size: cover;
 }
 
+.landing-page .index-header.blog-page{
+    height: 80px;
+    background: #444;
+    background-size: cover;
+}
+
 .landing-page .caption-link {
     color: #fff;
     margin-left: 10px;
