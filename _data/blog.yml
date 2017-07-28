@@ -12,8 +12,8 @@
 - name: GIT
   href: /git/
 
-- name: Mac
-  href: /mac/
+# - name: Mac
+#   href: /mac/
 
 - name: Other
   href: /other/

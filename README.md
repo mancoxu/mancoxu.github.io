@@ -1,2 +1,2 @@
 # Thanks Jalpc.
-<https://jarrekk.github.io/Jalpc/>
+<https://github.com/jarrekk/Jalpc/>

@@ -3,7 +3,7 @@
 
 
 - name:
-    detail: 北京云予科技技术有限公司
+    detail: 北京云予科技技术有限公司（云账户）
     i18n: company_a
   desc:
     detail: 负责公司内部清结算系统、官网、红包C端、B端功能开发

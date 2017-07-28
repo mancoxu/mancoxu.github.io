@@ -6,6 +6,9 @@
 - name: ReactRouter
   percentage: 90
 
+- name: Webpack
+  percentage: 70
+  
 - name: AntDesign
   percentage: 90
 
