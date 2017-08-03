@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Git revert用法"
+title:  "git revert用法"
 date:   2017-08-03
 desc: "Git revert，用法"
 keywords: "mancoxu,git"
