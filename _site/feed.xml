@@ -5,9 +5,44 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 28 Jul 2017 13:15:50 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Jul 2017 13:15:50 +0800</lastBuildDate>
+    <pubDate>Thu, 03 Aug 2017 15:30:04 +0800</pubDate>
+    <lastBuildDate>Thu, 03 Aug 2017 15:30:04 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Git revert用法</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 撤销 某次操作，此次操作之前和之后的commit和history都会保留，并且把这次撤销&lt;/p&gt;
+
+&lt;p&gt;作为一次最新的提交&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert HEAD&lt;/code&gt; 	撤销前一次 commit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert HEAD^&lt;/code&gt; 	撤销前前一次 commit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert commit&lt;/code&gt; （比如：fa042ce57ebbe5bb9c8db709f719cec2c58ee7ff）撤销指定的版本，撤销也会作为一次提交进行保存。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;git revert是提交一个新的版本，将需要revert的版本的内容再反向修改回去，&lt;/p&gt;
+
+&lt;p&gt;版本会递增，不影响之前提交的内容&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt;的区别&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 是用一次新的commit来回滚之前的commit，&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt; 是直接删除指定的commit。&lt;/li&gt;
+  &lt;li&gt;在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt; 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Thu, 03 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/git/2017/08/03/git-revert-%E7%94%A8%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://localhost:4000/git/2017/08/03/git-revert-%E7%94%A8%E6%B3%95.html</guid>
+        
+        <category>Git</category>
+        
+        
+        <category>Git</category>
+        
+      </item>
     
       <item>
         <title>git 恢复单个文件的历史版本</title>
