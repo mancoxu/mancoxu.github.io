@@ -5,9 +5,124 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 Aug 2017 15:30:59 +0800</pubDate>
-    <lastBuildDate>Thu, 03 Aug 2017 15:30:59 +0800</lastBuildDate>
+    <pubDate>Mon, 07 Aug 2017 16:45:04 +0800</pubDate>
+    <lastBuildDate>Mon, 07 Aug 2017 16:45:04 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Git查看、删除、重命名分支和tag</title>
+        <description>&lt;h2 id=&quot;查看远程分支&quot;&gt;查看远程分支&lt;/h2&gt;
+
+&lt;p&gt;加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;-a&lt;/code&gt; 参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git branch -a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;删除本地分支&quot;&gt;删除本地分支&lt;/h2&gt;
+
+&lt;p&gt;在branch命令指定&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;选项执行，以删除分支。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git branch -d &amp;lt;branchname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;删除远程分支和tag&quot;&gt;删除远程分支和tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin --delete &amp;lt;branchName&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;删除tag这么用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin --delete tag &amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin :&amp;lt;branchName&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是删除tag的方法，推送一个空tag到远程tag：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git tag -d &amp;lt;tagname&amp;gt;
+$ git push origin :refs/tags/&amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;两种语法作用完全相同。&lt;/p&gt;
+
+&lt;h2 id=&quot;删除不存在对应远程分支的本地分支&quot;&gt;删除不存在对应远程分支的本地分支&lt;/h2&gt;
+
+&lt;p&gt;假设这样一种情况：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;我创建了本地分支b1并pull到远程分支 origin/b1；&lt;/li&gt;
+  &lt;li&gt;其他人在本地使用fetch或pull创建了本地的b1分支；&lt;/li&gt;
+  &lt;li&gt;我删除了 origin/b1 远程分支；&lt;/li&gt;
+  &lt;li&gt;其他人再次执行fetch或者pull并不会删除这个他们本地的 b1 分支，运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;git branch -a&lt;/code&gt; 也不能看出这个branch被删除了，如何处理？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;简单的方法是使用这个命令，它在fetch之后删除掉没有与远程分支对应的本地分支：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git fetch -p
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;重命名远程分支&quot;&gt;重命名远程分支&lt;/h2&gt;
+
+&lt;p&gt;在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。&lt;/p&gt;
+
+&lt;p&gt;例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;删除远程分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git push --delete origin devel&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;重命名本地分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git branch -m devel develop&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;推送本地分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git push origin develop&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;把本地tag推送到远程&quot;&gt;把本地tag推送到远程&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push --tags
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;获取远程tag&quot;&gt;获取远程tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git fetch origin tag &amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;原文链接：&lt;a href=&quot;https://blog.zengrong.net/post/1746.html&quot;&gt;https://blog.zengrong.net/post/1746.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;git分支操作文章(荐): &lt;a href=&quot;http://backlogtool.com/git-guide/cn/stepup/stepup2_5.html&quot;&gt;http://backlogtool.com/git-guide/cn/stepup/stepup2_5.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 07 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/git/2017/08/07/Git%E6%9F%A5%E7%9C%8B-%E5%88%A0%E9%99%A4-%E9%87%8D%E5%91%BD%E5%90%8D%E5%88%86%E6%94%AF%E5%92%8Ctag.html</link>
+        <guid isPermaLink="true">http://localhost:4000/git/2017/08/07/Git%E6%9F%A5%E7%9C%8B-%E5%88%A0%E9%99%A4-%E9%87%8D%E5%91%BD%E5%90%8D%E5%88%86%E6%94%AF%E5%92%8Ctag.html</guid>
+        
+        <category>Git</category>
+        
+        
+        <category>Git</category>
+        
+      </item>
     
       <item>
         <title>git revert用法</title>
