@@ -5,8 +5,8 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Aug 2017 16:45:04 +0800</pubDate>
-    <lastBuildDate>Mon, 07 Aug 2017 16:45:04 +0800</lastBuildDate>
+    <pubDate>Wed, 27 Sep 2017 17:37:44 +0800</pubDate>
+    <lastBuildDate>Wed, 27 Sep 2017 17:37:44 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -2412,6 +2412,9 @@ Expires, Cache-Control，和/或Vary，假如其值可能与之前相同变量�
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://modernweb.com/2013/11/25/fun-with-javascript-native-array-functions/&quot;&gt;《Fun with JavaScript Native Array Functions》&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/assets/img/js_array.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 21 Feb 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/javascript/2017/02/21/JavaScript%E5%8E%9F%E7%94%9F%E6%95%B0%E7%BB%84API.html</link>
