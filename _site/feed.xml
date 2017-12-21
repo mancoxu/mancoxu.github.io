@@ -5,12 +5,37 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Nov 2017 20:27:05 +0800</pubDate>
-    <lastBuildDate>Thu, 16 Nov 2017 20:27:05 +0800</lastBuildDate>
+    <pubDate>Thu, 21 Dec 2017 16:21:31 +0800</pubDate>
+    <lastBuildDate>Thu, 21 Dec 2017 16:21:31 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
-        <title>a 标签实现打电话、发短信、发邮件、查地图.md</title>
+        <title>SHELL命令里面的EQ、NE、GT、LT、GE、LE</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;EQ(eq)&lt;/code&gt; 就是 EQUAL &lt;strong&gt;等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NQ(nq)&lt;/code&gt; 就是 NOT EQUAL &lt;strong&gt;不等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GT(gt)&lt;/code&gt; 就是 GREATER THAN &lt;strong&gt;大于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LT(lt)&lt;/code&gt; 就是 LESS THAN &lt;strong&gt;小于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GE(ge)&lt;/code&gt; 就是 GREATER THAN OR EQUAL &lt;strong&gt;大于等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LE(le)&lt;/code&gt; 就是 LESS THAN OR EQUAL &lt;strong&gt;小于等于&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Dec 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2017/12/21/SHELL%E5%91%BD%E4%BB%A4%E9%87%8C%E9%9D%A2%E7%9A%84EQ-NE-GT-LT-GE-LE.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2017/12/21/SHELL%E5%91%BD%E4%BB%A4%E9%87%8C%E9%9D%A2%E7%9A%84EQ-NE-GT-LT-GE-LE.html</guid>
+        
+        <category>linux</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>a 标签实现打电话、发短信、发邮件、查地图</title>
         <description>&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
   &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 打电话 --&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tel:138xxxxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;138xxxxxxxx&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
