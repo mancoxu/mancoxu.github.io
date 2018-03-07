@@ -5,9 +5,82 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Dec 2017 16:21:31 +0800</pubDate>
-    <lastBuildDate>Thu, 21 Dec 2017 16:21:31 +0800</lastBuildDate>
+    <pubDate>Wed, 07 Mar 2018 20:32:14 +0800</pubDate>
+    <lastBuildDate>Wed, 07 Mar 2018 20:32:14 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>linux sed批量替换文件</title>
+        <description>&lt;h3 id=&quot;方法1&quot;&gt;方法1：&lt;/h3&gt;
+
+&lt;p&gt;这两天在构建一个应用的使用用到了maven,由于project很大,足足有700多个pom.xml文件,更郁闷的是在很多pom.xml文件里都单独指定了资源库的url,我需要把这些资源库的url统一指定到nexus本地中央库. 手工一个个改文件配置有点不太实际,所以google了一下,找到批量替换文件内容的好方法,命令结构如下:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find -name '要查找的文件名' | xargs perl -pi -e 's|被替换的字符串|替换后的字符串|g'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;下面这个例子就是将当前目录及所有子目录下的所有 pom.xml 文件中的 &lt;strong&gt;http://repo1.maven.org/maven2&lt;/strong&gt; 替换为 &lt;strong&gt;http://localhost:8081/nexus/content/groups/public&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;find -name 'pom.xml' | xargs perl -pi -e 's|http://repo1.maven.org/maven2|http://localhost:8081/nexus/content /groups/public|g'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里用到了Perl语言,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;perl -pi -e&lt;/code&gt; 在Perl 命令中加上&lt;code class=&quot;highlighter-rouge&quot;&gt;-e&lt;/code&gt; 选项，后跟一行代码，那它就会像运行一个普通的Perl 脚本那样运行该代码.&lt;/p&gt;
+
+&lt;p&gt;从命令行中使用Perl 能够帮助实现一些强大的、实时的转换。认真研究正则表达式，并正确地使用，将会为您省去大量的手工编辑工作。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;find -name 'pom.xml' | xargs perl -pi -e 's|http://repo1.maven.org/maven2|http://localhost:8081/nexus/content/groups/public|g'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;方法2&quot;&gt;方法2：&lt;/h3&gt;
+
+&lt;p&gt;Linux下批量替换多个文件中的字符串的简单方法。用sed命令可以批量替换多个文件中的字符串。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &quot;s/oldString/newString/g&quot;  `grep oldString -rl /path`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;例如：我要把mahuinan替换 为huinanma，执行命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sed -i &quot;s/mahuinan/huinanma/g&quot; 'grep mahuinan -rl /www'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是目前linux最简单的批量替换字符串命令了！&lt;/p&gt;
+
+&lt;h3 id=&quot;方法3&quot;&gt;方法3：&lt;/h3&gt;
+
+&lt;p&gt;在日程的开发过程中，可能大家会遇到将某个变量名修改为另一个变量名的情况，如果这个变量是一个局部变量的话，vi足以胜任，但是如果是某个全局变量的话，并且在很多文件中进行了使用，这个时候使用vi就是 一个不明智的选择。这里给出一个简单的shell命令，可以一次性将所有文件中的指定字符串进行修改：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep &quot;abc&quot; * -R | awk -F: '{print $1}' | sort | uniq | xargs sed -i 's/abc/abcde/g'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;补充说明&quot;&gt;补充说明：&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sed -i &quot;s/oldString/newString/g&quot; `grep oldString -rl /path\` 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对多个文件的处理可能不支持，需要用 &lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;, 搞定。&lt;/p&gt;
+
+&lt;p&gt;变种如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep oldString -rl /path | xargs sed -i &quot;s/oldString/newString/g&quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意： 在mac下 &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; 需要替换成 &lt;code class=&quot;highlighter-rouge&quot;&gt;gsed&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 07 Mar 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2018/03/07/linux-sed%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2018/03/07/linux-sed%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6.html</guid>
+        
+        <category>linux</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
     
       <item>
         <title>SHELL命令里面的EQ、NE、GT、LT、GE、LE</title>
