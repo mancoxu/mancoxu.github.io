@@ -5,8 +5,8 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 07 Mar 2018 20:32:14 +0800</pubDate>
-    <lastBuildDate>Wed, 07 Mar 2018 20:32:14 +0800</lastBuildDate>
+    <pubDate>Wed, 07 Mar 2018 20:38:26 +0800</pubDate>
+    <lastBuildDate>Wed, 07 Mar 2018 20:38:26 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -69,7 +69,12 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;注意： 在mac下 &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; 需要替换成 &lt;code class=&quot;highlighter-rouge&quot;&gt;gsed&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意： 在mac下 &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; 需要替换成 &lt;code class=&quot;highlighter-rouge&quot;&gt;gsed&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;原文链接：&lt;a href=&quot;http://www.phpchina.com/blog-191373-187668.html&quot;&gt;http://www.phpchina.com/blog-191373-187668.html&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Wed, 07 Mar 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/other/2018/03/07/linux-sed%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6.html</link>
