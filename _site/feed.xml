@@ -5,8 +5,8 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 07 Mar 2018 20:38:26 +0800</pubDate>
-    <lastBuildDate>Wed, 07 Mar 2018 20:38:26 +0800</lastBuildDate>
+    <pubDate>Wed, 07 Mar 2018 20:40:12 +0800</pubDate>
+    <lastBuildDate>Wed, 07 Mar 2018 20:40:12 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -56,7 +56,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;补充说明&quot;&gt;补充说明：&lt;/h2&gt;
+&lt;h2 id=&quot;补充说明推荐用下面的方法&quot;&gt;补充说明(推荐用下面的方法)：&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sed -i &quot;s/oldString/newString/g&quot; `grep oldString -rl /path\` 
 &lt;/code&gt;&lt;/pre&gt;
