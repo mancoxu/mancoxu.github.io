@@ -425,3 +425,6 @@ a.reverse()
 -----
 
 [《Fun with JavaScript Native Array Functions》](http://modernweb.com/2013/11/25/fun-with-javascript-native-array-functions/)
+
+![img](/static/assets/img/js_array.png)
+

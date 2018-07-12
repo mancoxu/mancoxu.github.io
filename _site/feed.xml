@@ -5,9 +5,476 @@
     <description>Manco's blog,use Jekyll and github pages.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 28 Jul 2017 12:22:00 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Jul 2017 12:22:00 +0800</lastBuildDate>
+    <pubDate>Wed, 07 Mar 2018 20:40:12 +0800</pubDate>
+    <lastBuildDate>Wed, 07 Mar 2018 20:40:12 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>linux sed批量替换文件</title>
+        <description>&lt;h3 id=&quot;方法1&quot;&gt;方法1：&lt;/h3&gt;
+
+&lt;p&gt;这两天在构建一个应用的使用用到了maven,由于project很大,足足有700多个pom.xml文件,更郁闷的是在很多pom.xml文件里都单独指定了资源库的url,我需要把这些资源库的url统一指定到nexus本地中央库. 手工一个个改文件配置有点不太实际,所以google了一下,找到批量替换文件内容的好方法,命令结构如下:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find -name '要查找的文件名' | xargs perl -pi -e 's|被替换的字符串|替换后的字符串|g'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;下面这个例子就是将当前目录及所有子目录下的所有 pom.xml 文件中的 &lt;strong&gt;http://repo1.maven.org/maven2&lt;/strong&gt; 替换为 &lt;strong&gt;http://localhost:8081/nexus/content/groups/public&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;find -name 'pom.xml' | xargs perl -pi -e 's|http://repo1.maven.org/maven2|http://localhost:8081/nexus/content /groups/public|g'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里用到了Perl语言,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;perl -pi -e&lt;/code&gt; 在Perl 命令中加上&lt;code class=&quot;highlighter-rouge&quot;&gt;-e&lt;/code&gt; 选项，后跟一行代码，那它就会像运行一个普通的Perl 脚本那样运行该代码.&lt;/p&gt;
+
+&lt;p&gt;从命令行中使用Perl 能够帮助实现一些强大的、实时的转换。认真研究正则表达式，并正确地使用，将会为您省去大量的手工编辑工作。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;find -name 'pom.xml' | xargs perl -pi -e 's|http://repo1.maven.org/maven2|http://localhost:8081/nexus/content/groups/public|g'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;方法2&quot;&gt;方法2：&lt;/h3&gt;
+
+&lt;p&gt;Linux下批量替换多个文件中的字符串的简单方法。用sed命令可以批量替换多个文件中的字符串。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &quot;s/oldString/newString/g&quot;  `grep oldString -rl /path`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;例如：我要把mahuinan替换 为huinanma，执行命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sed -i &quot;s/mahuinan/huinanma/g&quot; 'grep mahuinan -rl /www'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是目前linux最简单的批量替换字符串命令了！&lt;/p&gt;
+
+&lt;h3 id=&quot;方法3&quot;&gt;方法3：&lt;/h3&gt;
+
+&lt;p&gt;在日程的开发过程中，可能大家会遇到将某个变量名修改为另一个变量名的情况，如果这个变量是一个局部变量的话，vi足以胜任，但是如果是某个全局变量的话，并且在很多文件中进行了使用，这个时候使用vi就是 一个不明智的选择。这里给出一个简单的shell命令，可以一次性将所有文件中的指定字符串进行修改：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep &quot;abc&quot; * -R | awk -F: '{print $1}' | sort | uniq | xargs sed -i 's/abc/abcde/g'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;补充说明推荐用下面的方法&quot;&gt;补充说明(推荐用下面的方法)：&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sed -i &quot;s/oldString/newString/g&quot; `grep oldString -rl /path\` 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对多个文件的处理可能不支持，需要用 &lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;, 搞定。&lt;/p&gt;
+
+&lt;p&gt;变种如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep oldString -rl /path | xargs sed -i &quot;s/oldString/newString/g&quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;注意： 在mac下 &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; 需要替换成 &lt;code class=&quot;highlighter-rouge&quot;&gt;gsed&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;原文链接：&lt;a href=&quot;http://www.phpchina.com/blog-191373-187668.html&quot;&gt;http://www.phpchina.com/blog-191373-187668.html&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 07 Mar 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2018/03/07/linux-sed%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2018/03/07/linux-sed%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6.html</guid>
+        
+        <category>linux</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>SHELL命令里面的EQ、NE、GT、LT、GE、LE</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;EQ(eq)&lt;/code&gt; 就是 EQUAL &lt;strong&gt;等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NQ(nq)&lt;/code&gt; 就是 NOT EQUAL &lt;strong&gt;不等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GT(gt)&lt;/code&gt; 就是 GREATER THAN &lt;strong&gt;大于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LT(lt)&lt;/code&gt; 就是 LESS THAN &lt;strong&gt;小于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GE(ge)&lt;/code&gt; 就是 GREATER THAN OR EQUAL &lt;strong&gt;大于等于&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LE(le)&lt;/code&gt; 就是 LESS THAN OR EQUAL &lt;strong&gt;小于等于&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Dec 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/other/2017/12/21/SHELL%E5%91%BD%E4%BB%A4%E9%87%8C%E9%9D%A2%E7%9A%84EQ-NE-GT-LT-GE-LE.html</link>
+        <guid isPermaLink="true">http://localhost:4000/other/2017/12/21/SHELL%E5%91%BD%E4%BB%A4%E9%87%8C%E9%9D%A2%E7%9A%84EQ-NE-GT-LT-GE-LE.html</guid>
+        
+        <category>linux</category>
+        
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>a 标签实现打电话、发短信、发邮件、查地图</title>
+        <description>&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 打电话 --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tel:138xxxxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;138xxxxxxxx&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 发邮件 --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mailto:mail@mail.com?subject=TestObject&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;mail@mail.com&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 发短信 --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sms:10086?body=message_body&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;给 10086 发短信&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 查地图 --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;geopoint:116.281469,39.866035&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;我的位置&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 07 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/html+css/2017/11/07/a-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%93%E7%94%B5%E8%AF%9D-%E5%8F%91%E7%9F%AD%E4%BF%A1-%E5%8F%91%E9%82%AE%E4%BB%B6-%E6%9F%A5%E5%9C%B0%E5%9B%BE.html</link>
+        <guid isPermaLink="true">http://localhost:4000/html+css/2017/11/07/a-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%93%E7%94%B5%E8%AF%9D-%E5%8F%91%E7%9F%AD%E4%BF%A1-%E5%8F%91%E9%82%AE%E4%BB%B6-%E6%9F%A5%E5%9C%B0%E5%9B%BE.html</guid>
+        
+        <category>Html+Css</category>
+        
+        
+        <category>Html+css</category>
+        
+      </item>
+    
+      <item>
+        <title>input调用手机摄像机、相册功能</title>
+        <description>&lt;p&gt;使用input标签 &lt;code class=&quot;highlighter-rouge&quot;&gt;type='file'&lt;/code&gt;，可以调用系统默认的照相机、相册、摄像机、录音功能：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;accept=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/*&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;capture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camera&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;accept=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;video/*&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;capture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;camcorder&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;accept=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;audio/*&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;capture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;microphone&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept&lt;/code&gt;属性，打开的系统文件目录&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept=&quot;image/*&quot;&lt;/code&gt; 照相机、相册&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept=&quot;video/*&quot;&lt;/code&gt; 摄像机&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept=&quot;audio/*&quot;&lt;/code&gt; 录音&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;capture&lt;/code&gt; 属性，系统所捕获的默认设备&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;capture=&quot;camera&quot;&lt;/code&gt;		照相机&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;capture=&quot;camcorder&quot;&lt;/code&gt;		摄像机&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;capture=&quot;microphone&quot;&lt;/code&gt;	录音&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept=&quot;image/*; capture=camera&quot;&lt;/code&gt; 直接调用相机&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;accept=&quot;image/*&quot;&lt;/code&gt; 调用相机 图片或者相册&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;multiple&lt;/code&gt; 属性，支持多选，当支持多选时，&lt;code class=&quot;highlighter-rouge&quot;&gt;multiple&lt;/code&gt; 优先级高于 &lt;code class=&quot;highlighter-rouge&quot;&gt;capture&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;img-显示图片例子&quot;&gt;img 显示图片例子&lt;/h2&gt;
+
+&lt;h3 id=&quot;html&quot;&gt;html&lt;/h3&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;form1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;runat=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'file'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;imgInp&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;blah&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;显示上传的图片&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FileReader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+       &lt;span class=&quot;nx&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'#blah'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'src'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+       &lt;span class=&quot;nx&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readAsDataURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#imgInp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;readURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;FileReader&lt;/code&gt;方法，详见&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 07 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/html+css/2017/11/07/input%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E6%9C%BA-%E7%9B%B8%E5%86%8C%E5%8A%9F%E8%83%BD.html</link>
+        <guid isPermaLink="true">http://localhost:4000/html+css/2017/11/07/input%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E6%9C%BA-%E7%9B%B8%E5%86%8C%E5%8A%9F%E8%83%BD.html</guid>
+        
+        <category>Html+Css</category>
+        
+        
+        <category>Html+css</category>
+        
+      </item>
+    
+      <item>
+        <title>ReactRouter 离开页面的钩子</title>
+        <description>&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRouteLeaveHook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;routerWillLeave&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;routerWillLeave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'确认要离开？'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;用此方法需要注意&quot;&gt;用此方法需要注意：&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;页面跳转需要由react-router api 方法实行，原生a标签跳转此方法会失效&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当前组件需要是react-router 里的链接页面一级组件&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;实用例&quot;&gt;实用例&lt;/h3&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-redux'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bindActionCreators&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'redux'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;withRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-router'&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TestComp&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 	
+    &lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRouteLeaveHook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;routerWillLeave&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;routerWillLeave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'确认要离开？'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	
+    &lt;span class=&quot;nx&quot;&gt;handleChange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;pathname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://mancoxu.me'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Button&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;primary&quot;&lt;/span&gt; 
+                    &lt;span class=&quot;nx&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleChange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt; 
+                &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;err&quot;&gt;点击跳转&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Button&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// 失效 &amp;lt;p&amp;gt; &amp;lt;a href={`http://mancoxu.me`}&amp;gt;跳转&amp;lt;/a&amp;gt; &amp;lt;/p&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;TestComp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;withRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TestComp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mapStateToProps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ownProps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mapDispatchToProps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dispatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    	&lt;span class=&quot;na&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bindActionCreators&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dispatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mapStateToProps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mapDispatchToProps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TestComp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;报错解决链接：&lt;a href=&quot;https://stackoverflow.com/questions/39103684/getting-an-error-on-using-setrouteleavehook-withrouter&quot;&gt;https://stackoverflow.com/questions/39103684/getting-an-error-on-using-setrouteleavehook-withrouter&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 25 Oct 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/javascript/2017/10/25/ReactRouter-%E7%A6%BB%E5%BC%80%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%92%A9%E5%AD%90.html</link>
+        <guid isPermaLink="true">http://localhost:4000/javascript/2017/10/25/ReactRouter-%E7%A6%BB%E5%BC%80%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%92%A9%E5%AD%90.html</guid>
+        
+        <category>Javascript</category>
+        
+        
+        <category>Javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>Git查看、删除、重命名分支和tag</title>
+        <description>&lt;h2 id=&quot;查看远程分支&quot;&gt;查看远程分支&lt;/h2&gt;
+
+&lt;p&gt;加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;-a&lt;/code&gt; 参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git branch -a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;删除本地分支&quot;&gt;删除本地分支&lt;/h2&gt;
+
+&lt;p&gt;在branch命令指定&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;选项执行，以删除分支。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git branch -d &amp;lt;branchname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;删除远程分支和tag&quot;&gt;删除远程分支和tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin --delete &amp;lt;branchName&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;删除tag这么用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin --delete tag &amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push origin :&amp;lt;branchName&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是删除tag的方法，推送一个空tag到远程tag：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git tag -d &amp;lt;tagname&amp;gt;
+$ git push origin :refs/tags/&amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;两种语法作用完全相同。&lt;/p&gt;
+
+&lt;h2 id=&quot;删除不存在对应远程分支的本地分支&quot;&gt;删除不存在对应远程分支的本地分支&lt;/h2&gt;
+
+&lt;p&gt;假设这样一种情况：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;我创建了本地分支b1并pull到远程分支 origin/b1；&lt;/li&gt;
+  &lt;li&gt;其他人在本地使用fetch或pull创建了本地的b1分支；&lt;/li&gt;
+  &lt;li&gt;我删除了 origin/b1 远程分支；&lt;/li&gt;
+  &lt;li&gt;其他人再次执行fetch或者pull并不会删除这个他们本地的 b1 分支，运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;git branch -a&lt;/code&gt; 也不能看出这个branch被删除了，如何处理？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;简单的方法是使用这个命令，它在fetch之后删除掉没有与远程分支对应的本地分支：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git fetch -p
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;重命名远程分支&quot;&gt;重命名远程分支&lt;/h2&gt;
+
+&lt;p&gt;在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。&lt;/p&gt;
+
+&lt;p&gt;例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;删除远程分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git push --delete origin devel&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;重命名本地分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git branch -m devel develop&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;推送本地分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ git push origin develop&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;把本地tag推送到远程&quot;&gt;把本地tag推送到远程&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git push --tags
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;获取远程tag&quot;&gt;获取远程tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;
+$ git fetch origin tag &amp;lt;tagname&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;原文链接：&lt;a href=&quot;https://blog.zengrong.net/post/1746.html&quot;&gt;https://blog.zengrong.net/post/1746.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;git分支操作文章(荐): &lt;a href=&quot;http://backlogtool.com/git-guide/cn/stepup/stepup2_5.html&quot;&gt;http://backlogtool.com/git-guide/cn/stepup/stepup2_5.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 07 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/git/2017/08/07/Git%E6%9F%A5%E7%9C%8B-%E5%88%A0%E9%99%A4-%E9%87%8D%E5%91%BD%E5%90%8D%E5%88%86%E6%94%AF%E5%92%8Ctag.html</link>
+        <guid isPermaLink="true">http://localhost:4000/git/2017/08/07/Git%E6%9F%A5%E7%9C%8B-%E5%88%A0%E9%99%A4-%E9%87%8D%E5%91%BD%E5%90%8D%E5%88%86%E6%94%AF%E5%92%8Ctag.html</guid>
+        
+        <category>Git</category>
+        
+        
+        <category>Git</category>
+        
+      </item>
+    
+      <item>
+        <title>git revert用法</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 撤销 某次操作，此次操作之前和之后的commit和history都会保留，并且把这次撤销&lt;/p&gt;
+
+&lt;p&gt;作为一次最新的提交&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert HEAD&lt;/code&gt; 	撤销前一次 commit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert HEAD^&lt;/code&gt; 	撤销前前一次 commit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert commit&lt;/code&gt; （比如：fa042ce57ebbe5bb9c8db709f719cec2c58ee7ff）撤销指定的版本，撤销也会作为一次提交进行保存。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;git revert是提交一个新的版本，将需要revert的版本的内容再反向修改回去，&lt;/p&gt;
+
+&lt;p&gt;版本会递增，不影响之前提交的内容&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt;的区别&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git revert&lt;/code&gt; 是用一次新的commit来回滚之前的commit，&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt; 是直接删除指定的commit。&lt;/li&gt;
+  &lt;li&gt;在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset&lt;/code&gt; 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Thu, 03 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/git/2017/08/03/git-revert-%E7%94%A8%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://localhost:4000/git/2017/08/03/git-revert-%E7%94%A8%E6%B3%95.html</guid>
+        
+        <category>Git</category>
+        
+        
+        <category>Git</category>
+        
+      </item>
     
       <item>
         <title>git 恢复单个文件的历史版本</title>
@@ -2262,6 +2729,9 @@ Expires, Cache-Control，和/或Vary，假如其值可能与之前相同变量�
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://modernweb.com/2013/11/25/fun-with-javascript-native-array-functions/&quot;&gt;《Fun with JavaScript Native Array Functions》&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/assets/img/js_array.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 21 Feb 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/javascript/2017/02/21/JavaScript%E5%8E%9F%E7%94%9F%E6%95%B0%E7%BB%84API.html</link>
